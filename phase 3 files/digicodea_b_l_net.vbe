@@ -1,0 +1,111 @@
+-- VHDL data flow description generated from `digicodea_b_l_net`
+--		date : Sat Apr 27 19:32:26 2019
+
+
+-- Entity Declaration
+
+ENTITY digicodea_b_l_net IS
+  PORT (
+  door : out BIT;	-- door
+  alarm : out BIT;	-- alarm
+  day : in BIT;	-- day
+  reset : in BIT;	-- reset
+  code : in bit_vector(3 DOWNTO 0) ;	-- code
+  vss : in BIT;	-- vss
+  vdd : in BIT;	-- vdd
+  ck : in BIT	-- ck
+  );
+END digicodea_b_l_net;
+
+
+-- Architecture Declaration
+
+ARCHITECTURE behaviour_data_flow OF digicodea_b_l_net IS
+  SIGNAL digicode_cs : REG_VECTOR(2 DOWNTO 0) REGISTER;	-- digicode_cs
+  SIGNAL not_aux0 : BIT;		-- not_aux0
+  SIGNAL not_aux2 : BIT;		-- not_aux2
+  SIGNAL not_aux1 : BIT;		-- not_aux1
+  SIGNAL not_aux3 : BIT;		-- not_aux3
+  SIGNAL not_digicode_cs : BIT_VECTOR(2 DOWNTO 0);	-- not_digicode_cs
+  SIGNAL not_code : BIT_VECTOR(2 DOWNTO 1);	-- not_code
+  SIGNAL not_reset : BIT;		-- not_reset
+  SIGNAL oa22_x2_sig : BIT;		-- oa22_x2_sig
+  SIGNAL o2_x2_sig : BIT;		-- o2_x2_sig
+  SIGNAL no2_x1_sig : BIT;		-- no2_x1_sig
+  SIGNAL na2_x1_2_sig : BIT;		-- na2_x1_2_sig
+  SIGNAL na3_x1_sig : BIT;		-- na3_x1_sig
+  SIGNAL na2_x1_sig : BIT;		-- na2_x1_sig
+  SIGNAL no4_x1_sig : BIT;		-- no4_x1_sig
+  SIGNAL na4_x1_sig : BIT;		-- na4_x1_sig
+  SIGNAL no2_x1_2_sig : BIT;		-- no2_x1_2_sig
+  SIGNAL na3_x1_3_sig : BIT;		-- na3_x1_3_sig
+  SIGNAL na3_x1_2_sig : BIT;		-- na3_x1_2_sig
+  SIGNAL na2_x1_3_sig : BIT;		-- na2_x1_3_sig
+  SIGNAL na2_x1_4_sig : BIT;		-- na2_x1_4_sig
+  SIGNAL no4_x1_2_sig : BIT;		-- no4_x1_2_sig
+  SIGNAL na4_x1_2_sig : BIT;		-- na4_x1_2_sig
+  SIGNAL inv_x2_sig : BIT;		-- inv_x2_sig
+  SIGNAL no3_x1_sig : BIT;		-- no3_x1_sig
+  SIGNAL on12_x1_sig : BIT;		-- on12_x1_sig
+  SIGNAL on12_x1_2_sig : BIT;		-- on12_x1_2_sig
+  SIGNAL na4_x1_3_sig : BIT;		-- na4_x1_3_sig
+  SIGNAL nao22_x1_sig : BIT;		-- nao22_x1_sig
+
+BEGIN
+  nao22_x1_sig <= NOT(((not_aux2 OR na4_x1_3_sig) AND na4_x1_2_sig)
+);
+  na4_x1_3_sig <= NOT((((code(2) AND on12_x1_2_sig) AND no3_x1_sig)
+ AND on12_x1_sig));
+  on12_x1_2_sig <= (NOT(code(3)) OR day);
+  on12_x1_sig <= (NOT(not_aux0) OR code(3));
+  no3_x1_sig <= NOT(((code(1) OR inv_x2_sig) OR reset));
+  inv_x2_sig <= NOT(code(0));
+  na4_x1_2_sig <= NOT((((digicode_cs(0) AND no4_x1_2_sig) AND 
+na2_x1_4_sig) AND na2_x1_3_sig));
+  no4_x1_2_sig <= NOT((((reset OR not_code(1)) OR code(0)) OR 
+code(3)));
+  na2_x1_4_sig <= NOT((not_aux1 AND not_digicode_cs(1)));
+  na2_x1_3_sig <= NOT((code(2) AND not_digicode_cs(2)));
+  na3_x1_2_sig <= NOT(((not_reset AND na3_x1_3_sig) AND na4_x1_sig)
+);
+  na3_x1_3_sig <= NOT(((digicode_cs(2) AND no2_x1_2_sig) AND 
+digicode_cs(0)));
+  no2_x1_2_sig <= NOT((not_aux3 OR not_aux1));
+  na4_x1_sig <= NOT((((not_digicode_cs(1) AND no4_x1_sig) AND 
+digicode_cs(0)) AND not_digicode_cs(2)));
+  no4_x1_sig <= NOT((((code(0) OR code(2)) OR code(1)) OR code(3)
+));
+  na2_x1_sig <= NOT((not_reset AND na3_x1_sig));
+  na3_x1_sig <= NOT(((na2_x1_2_sig AND no2_x1_sig) AND 
+oa22_x2_sig));
+  na2_x1_2_sig <= NOT((code(3) AND not_digicode_cs(2)));
+  no2_x1_sig <= NOT((o2_x2_sig OR not_digicode_cs(1)));
+  o2_x2_sig <= (code(2) OR not_aux3);
+  oa22_x2_sig <= ((code(3) AND not_code(2)) OR digicode_cs(0));
+  not_reset <= NOT(reset);
+  not_code (1) <= NOT(code(1));
+  not_code (2) <= NOT(code(2));
+  not_digicode_cs (0) <= NOT(digicode_cs(0));
+  not_digicode_cs (1) <= NOT(digicode_cs(1));
+  not_digicode_cs (2) <= NOT(digicode_cs(2));
+  not_aux3 <= (code(0) OR not_code(1));
+  not_aux1 <= (code(3) OR not_code(2));
+  not_aux2 <= (not_digicode_cs(1) AND not_digicode_cs(0));
+  not_aux0 <= (digicode_cs(2) OR digicode_cs(0));
+  label0 : BLOCK (NOT(((ck AND NOT((ck'STABLE))) XOR '1')) = '1')
+  BEGIN
+    digicode_cs (0) <= GUARDED na2_x1_sig;
+  END BLOCK label0;
+  label1 : BLOCK (NOT(((ck AND NOT((ck'STABLE))) XOR '1')) = '1')
+  BEGIN
+    digicode_cs (1) <= GUARDED na3_x1_2_sig;
+  END BLOCK label1;
+  label2 : BLOCK (NOT(((ck AND NOT((ck'STABLE))) XOR '1')) = '1')
+  BEGIN
+    digicode_cs (2) <= GUARDED nao22_x1_sig;
+  END BLOCK label2;
+
+door <= (not_aux2 AND digicode_cs(2));
+
+alarm <= NOT((not_aux0 OR digicode_cs(1)));
+END;

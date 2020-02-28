@@ -1,0 +1,96 @@
+N:a2_x2_2_sig:-1:1356 ps
+N:a2_x2_sig:-1:1309 ps
+N:a3_x2_sig:-1:1160 ps
+N:a4_x2_sig:-1:704 ps
+N:alarm:-1:1517 ps
+N:ck:-1:0 ps
+N:code 0:-1:0 ps
+N:code 1:-1:0 ps
+N:code 2:-1:0 ps
+N:code 3:-1:0 ps
+N:day:-1:0 ps
+N:digicode_cs 0:-1:548 ps
+N:digicode_cs 1:-1:544 ps
+N:digicode_cs 2:-1:548 ps
+N:door:-1:1517 ps
+N:inv_x2_sig:-1:140 ps
+N:na2_x1_2_sig:-1:756 ps
+N:na2_x1_3_sig:-1:1549 ps
+N:na2_x1_sig:-1:913 ps
+N:na3_x1_2_sig:-1:1564 ps
+N:na3_x1_3_sig:-1:1002 ps
+N:na3_x1_4_sig:-1:1824 ps
+N:na3_x1_sig:-1:1836 ps
+N:na4_x1_2_sig:-1:1047 ps
+N:na4_x1_sig:-1:1007 ps
+N:nao22_x1_2_sig:-1:1632 ps
+N:nao22_x1_sig:-1:1536 ps
+N:no2_x1_sig:-1:1279 ps
+N:no3_x1_2_sig:-1:490 ps
+N:no3_x1_3_sig:-1:345 ps
+N:no3_x1_4_sig:-1:1340 ps
+N:no3_x1_sig:-1:463 ps
+N:no4_x1_sig:-1:634 ps
+N:not_aux0:-1:595 ps
+N:not_aux1:-1:965 ps
+N:not_aux2:-1:1065 ps
+N:not_code 1:-1:204 ps
+N:not_code 2:-1:140 ps
+N:not_code 3:-1:162 ps
+N:not_digicode_cs 0:-1:730 ps
+N:not_digicode_cs 1:-1:705 ps
+N:not_digicode_cs 2:-1:674 ps
+N:not_reset:-1:190 ps
+N:reset:-1:0 ps
+B:alarm_ins:-1:1517 ps
+B:door_ins:-1:1517 ps
+B:digicode_cs_2_ins:-1:548 ps
+B:na3_x1_4_ins:-1:1824 ps
+B:na2_x1_3_ins:-1:1549 ps
+B:no3_x1_4_ins:-1:1340 ps
+B:na4_x1_2_ins:-1:1047 ps
+B:no4_x1_ins:-1:634 ps
+B:digicode_cs_1_ins:-1:544 ps
+B:nao22_x1_2_ins:-1:1632 ps
+B:a2_x2_2_ins:-1:1356 ps
+B:na4_x1_ins:-1:1007 ps
+B:no3_x1_3_ins:-1:345 ps
+B:na3_x1_3_ins:-1:1002 ps
+B:no3_x1_2_ins:-1:490 ps
+B:digicode_cs_0_ins:-1:548 ps
+B:na3_x1_ins:32:1836 ps
+B:na3_x1_2_ins:32:1564 ps
+B:no2_x1_ins:32:1279 ps
+B:na2_x1_2_ins:-1:756 ps
+B:na2_x1_ins:-1:913 ps
+B:nao22_x1_ins:-1:1536 ps
+B:a4_x2_ins:-1:704 ps
+B:a3_x2_ins:-1:1160 ps
+B:no3_x1_ins:-1:463 ps
+B:inv_x2_ins:-1:140 ps
+B:a2_x2_ins:-1:1309 ps
+B:not_reset_ins:-1:190 ps
+B:not_code_1_ins:-1:204 ps
+B:not_code_2_ins:-1:140 ps
+B:not_code_3_ins:-1:162 ps
+B:not_digicode_cs_1_ins:-1:705 ps
+B:not_digicode_cs_2_ins:32:674 ps
+B:not_aux1_ins:-1:965 ps
+B:not_digicode_cs_0_ins:-1:730 ps
+B:not_aux0_ins:-1:595 ps
+B:not_aux2_ins:32:1065 ps
+C:door:-1:1517 ps
+C:alarm:-1:1517 ps
+C:day:-1:0 ps
+C:reset:-1:0 ps
+C:code 0:-1:0 ps
+C:code 1:-1:0 ps
+C:code 2:-1:0 ps
+C:code 3:-1:0 ps
+C:ck:-1:0 ps
+P:digicode_cs 2:digicode_cs 2:not_digicode_cs_2_ins:32:1065 ps
+P:not_digicode_cs_2_ins:not_digicode_cs 2:not_aux2_ins:32:1065 ps
+P:not_aux2_ins:not_aux2:no2_x1_ins:32:1065 ps
+P:no2_x1_ins:no2_x1_sig:na3_x1_2_ins:32:1065 ps
+P:na3_x1_2_ins:na3_x1_2_sig:na3_x1_ins:32:1065 ps
+P:na3_x1_ins:na3_x1_sig:digicode_cs_0_ins:32:1065 ps

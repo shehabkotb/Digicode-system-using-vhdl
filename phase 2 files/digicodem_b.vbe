@@ -1,0 +1,65 @@
+-- VHDL data flow description generated from `digicodem_b`
+--		date : Sat Apr 27 19:06:24 2019
+
+
+-- Entity Declaration
+
+ENTITY digicodem_b IS
+  PORT (
+  ck : in BIT;	-- ck
+  vdd : in BIT;	-- vdd
+  vss : in BIT;	-- vss
+  code : in bit_vector(3 DOWNTO 0) ;	-- code
+  reset : in BIT;	-- reset
+  day : in BIT;	-- day
+  alarm : out BIT;	-- alarm
+  door : out BIT	-- door
+  );
+END digicodem_b;
+
+
+-- Architecture Declaration
+
+ARCHITECTURE behaviour_data_flow OF digicodem_b IS
+  SIGNAL digicode_cs : REG_VECTOR(2 DOWNTO 0) REGISTER;	-- digicode_cs
+  SIGNAL aux0 : BIT;		-- aux0
+  SIGNAL aux1 : BIT;		-- aux1
+  SIGNAL aux2 : BIT;		-- aux2
+  SIGNAL aux4 : BIT;		-- aux4
+  SIGNAL aux5 : BIT;		-- aux5
+  SIGNAL aux6 : BIT;		-- aux6
+  SIGNAL aux8 : BIT;		-- aux8
+
+BEGIN
+  aux8 <= (NOT(code(3)) AND (code(2) AND NOT(digicode_cs(0)
+)));
+  aux6 <= (NOT(code(2)) AND digicode_cs(0));
+  aux5 <= (aux2 AND digicode_cs(1));
+  aux4 <= ((aux2 AND NOT(digicode_cs(1))) AND 
+digicode_cs(2));
+  aux2 <= (code(1) AND NOT(code(0)));
+  aux1 <= (NOT(code(1)) AND code(0));
+  aux0 <= (NOT(digicode_cs(1)) AND NOT(digicode_cs(2)));
+  label0 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    digicode_cs (0) <= GUARDED ((NOT(aux0) AND aux1 AND day AND NOT(reset) AND 
+code(3) AND code(2)) OR (aux5 AND NOT(reset) AND code(3)
+ AND aux6) OR ((aux4 OR (aux1 AND digicode_cs(1) 
+AND NOT(digicode_cs(2)))) AND NOT(reset) AND aux8));
+  END BLOCK label0;
+  label1 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    digicode_cs (1) <= GUARDED (reset OR (NOT(code(1)) AND NOT(code(0)) AND 
+digicode_cs(2) AND NOT(code(3)) AND aux6) OR (aux4 AND aux8));
+  END BLOCK label1;
+  label2 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    digicode_cs (2) <= GUARDED ((reset OR NOT(code(3)) OR code(2) OR 
+digicode_cs(0)) AND ((aux5 AND (digicode_cs(2) OR code(3)) AND 
+NOT(code(2))) OR reset));
+  END BLOCK label2;
+
+door <= (aux0 AND digicode_cs(0));
+
+alarm <= (aux0 AND NOT(digicode_cs(0)));
+END;

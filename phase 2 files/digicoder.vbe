@@ -1,0 +1,107 @@
+-- VHDL data flow description generated from `digicoder`
+--		date : Sat Apr 27 19:06:24 2019
+
+
+-- Entity Declaration
+
+ENTITY digicoder IS
+  PORT (
+  ck : in BIT;	-- ck
+  vdd : in BIT;	-- vdd
+  vss : in BIT;	-- vss
+  code : in bit_vector(3 DOWNTO 0) ;	-- code
+  reset : in BIT;	-- reset
+  day : in BIT;	-- day
+  alarm : out BIT;	-- alarm
+  door : out BIT	-- door
+  );
+END digicoder;
+
+
+-- Architecture Declaration
+
+ARCHITECTURE VBE OF digicoder IS
+  SIGNAL digicode_cs : REG_VECTOR(2 DOWNTO 0) REGISTER;	-- digicode_cs
+  SIGNAL digicode_cs_s6 : BIT;		-- digicode_cs_s6
+  SIGNAL digicode_ns_s6 : BIT;		-- digicode_ns_s6
+  SIGNAL digicode_cs_s5 : BIT;		-- digicode_cs_s5
+  SIGNAL digicode_ns_s5 : BIT;		-- digicode_ns_s5
+  SIGNAL digicode_cs_s4 : BIT;		-- digicode_cs_s4
+  SIGNAL digicode_ns_s4 : BIT;		-- digicode_ns_s4
+  SIGNAL digicode_cs_s3 : BIT;		-- digicode_cs_s3
+  SIGNAL digicode_ns_s3 : BIT;		-- digicode_ns_s3
+  SIGNAL digicode_cs_s2 : BIT;		-- digicode_cs_s2
+  SIGNAL digicode_ns_s2 : BIT;		-- digicode_ns_s2
+  SIGNAL digicode_cs_s1 : BIT;		-- digicode_cs_s1
+  SIGNAL digicode_ns_s1 : BIT;		-- digicode_ns_s1
+  SIGNAL digicode_cs_s0 : BIT;		-- digicode_cs_s0
+  SIGNAL digicode_ns_s0 : BIT;		-- digicode_ns_s0
+  SIGNAL digicode_ns : BIT_VECTOR(2 DOWNTO 0);	-- digicode_ns
+
+BEGIN
+  digicode_ns(0) <= (digicode_ns_s0 OR digicode_ns_s2 OR 
+digicode_ns_s6);
+  digicode_ns(1) <= (digicode_ns_s0 OR digicode_ns_s1 OR 
+digicode_ns_s3);
+  digicode_ns(2) <= (digicode_ns_s0 OR digicode_ns_s2 OR 
+digicode_ns_s3 OR digicode_ns_s4);
+  digicode_ns_s0 <= '0';
+  digicode_cs_s0 <= (digicode_cs(1) AND digicode_cs(0));
+  digicode_ns_s1 <= (digicode_cs_s0 AND NOT(code(0)) AND code(1) AND 
+NOT(code(2)) AND NOT(code(3)));
+  digicode_cs_s1 <= (NOT(digicode_cs(2)) AND digicode_cs(1));
+  digicode_ns_s2 <= (digicode_cs_s1 AND NOT(code(0)) AND code(1) AND 
+code(2) AND NOT(code(3)));
+  digicode_cs_s2 <= (digicode_cs(2) AND NOT(digicode_cs(1)) AND 
+digicode_cs(0));
+  digicode_ns_s3 <= (digicode_cs_s2 AND NOT(code(0)) AND code(1) AND 
+NOT(code(2)) AND code(3));
+  digicode_cs_s3 <= (digicode_cs(2) AND digicode_cs(1) AND NOT(
+digicode_cs(0)));
+  digicode_ns_s4 <= (digicode_cs_s3 AND NOT(code(0)) AND NOT(code(1))
+ AND NOT(code(2)) AND NOT(code(3)));
+  digicode_cs_s4 <= (digicode_cs(2) AND NOT(digicode_cs(1)) AND NOT(
+digicode_cs(0)));
+  digicode_ns_s5 <= ((digicode_cs_s0 AND day AND code(0) AND NOT(
+code(1)) AND code(2) AND code(3)) OR (digicode_cs_s1 AND
+ day AND code(0) AND NOT(code(1)) AND code(2) AND 
+code(3)) OR (digicode_cs_s2 AND day AND code(0) AND NOT(
+code(1)) AND code(2) AND code(3)) OR (digicode_cs_s3 AND
+ day AND code(0) AND NOT(code(1)) AND code(2) AND 
+code(3)) OR (digicode_cs_s4 AND ((code(0) AND NOT(
+code(1)) AND code(2) AND NOT(code(3))) OR (day AND 
+code(0) AND NOT(code(1)) AND code(2)))));
+  digicode_cs_s5 <= (NOT(digicode_cs(2)) AND NOT(digicode_cs(1)) AND 
+NOT(digicode_cs(0)));
+  digicode_ns_s6 <= ((digicode_cs_s0 AND (((code(0) OR NOT(code(1)) 
+OR code(2)) AND NOT(code(3))) OR ((NOT(day) OR NOT(
+code(0)) OR code(1) OR NOT(code(2))) AND code(3)))) OR (
+digicode_cs_s1 AND (((code(0) OR NOT(code(1)) OR NOT(code(2))) 
+AND NOT(code(3))) OR ((NOT(day) OR NOT(code(0)) OR 
+code(1) OR NOT(code(2))) AND code(3)))) OR (
+digicode_cs_s2 AND (((code(0) OR NOT(code(1))) AND NOT(code(2))
+) OR ((NOT(day) OR NOT(code(0)) OR code(1)) AND 
+code(2)) OR NOT(code(3)))) OR (digicode_cs_s3 AND (((
+code(0) OR code(1) OR code(2)) AND NOT(code(3))) OR ((
+NOT(day) OR NOT(code(0)) OR code(1) OR NOT(code(2)))
+ AND code(3)))) OR (digicode_cs_s4 AND (((NOT(day)
+ OR NOT(code(0)) OR code(1) OR NOT(code(2))) AND 
+code(3)) OR NOT(code(0)) OR code(1) OR NOT(code(2)))));
+  digicode_cs_s6 <= (NOT(digicode_cs(2)) AND digicode_cs(0));
+  label0 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    digicode_cs(0) <= GUARDED (digicode_ns(0) OR reset);
+  END BLOCK label0;
+  label1 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    digicode_cs(1) <= GUARDED (digicode_ns(1) OR reset);
+  END BLOCK label1;
+  label2 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    digicode_cs(2) <= GUARDED (digicode_ns(2) OR reset);
+  END BLOCK label2;
+
+door <= digicode_cs_s5;
+
+alarm <= digicode_cs_s6;
+END;

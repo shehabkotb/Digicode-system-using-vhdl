@@ -1,0 +1,61 @@
+-- VHDL data flow description generated from `digicodej_b`
+--		date : Sat Apr 27 19:06:24 2019
+
+
+-- Entity Declaration
+
+ENTITY digicodej_b IS
+  PORT (
+  ck : in BIT;	-- ck
+  vdd : in BIT;	-- vdd
+  vss : in BIT;	-- vss
+  code : in bit_vector(3 DOWNTO 0) ;	-- code
+  reset : in BIT;	-- reset
+  day : in BIT;	-- day
+  alarm : out BIT;	-- alarm
+  door : out BIT	-- door
+  );
+END digicodej_b;
+
+
+-- Architecture Declaration
+
+ARCHITECTURE behaviour_data_flow OF digicodej_b IS
+  SIGNAL digicode_cs : REG_VECTOR(2 DOWNTO 0) REGISTER;	-- digicode_cs
+  SIGNAL aux0 : BIT;		-- aux0
+  SIGNAL aux1 : BIT;		-- aux1
+  SIGNAL aux2 : BIT;		-- aux2
+
+BEGIN
+  aux2 <= (digicode_cs(2) AND NOT(code(2)));
+  aux1 <= (NOT(digicode_cs(1)) AND NOT(digicode_cs(2)));
+  aux0 <= (code(1) AND NOT(code(0)));
+  label0 : BLOCK ((ck AND NOT((ck'STABLE))) = '1')
+  BEGIN
+    digicode_cs (0) <= GUARDED (reset OR (NOT(aux1) AND ((NOT(digicode_cs(0)) 
+AND NOT(code(1)) AND code(0) AND NOT(code(3)) AND 
+digicode_cs(1)) OR (NOT(code(1)) AND code(0) AND day AND 
+code(3))) AND code(2)) OR ((code(3) OR digicode_cs(1)) 
+AND (NOT(digicode_cs(0)) OR NOT(code(3))) AND aux0 
+AND aux2));
+  END BLOCK label0;
+  label1 : BLOCK ((ck AND NOT((ck'STABLE))) = '1')
+  BEGIN
+    digicode_cs (1) <= GUARDED ((((NOT(digicode_cs(0)) AND code(1) AND NOT(
+code(0)) AND code(3) AND digicode_cs(2)) OR (
+digicode_cs(0) AND NOT(code(1)) AND NOT(code(0)) AND NOT(
+code(3)) AND digicode_cs(1) AND NOT(digicode_cs(2)))) 
+AND NOT(code(2))) OR reset);
+  END BLOCK label1;
+  label2 : BLOCK ((ck AND NOT((ck'STABLE))) = '1')
+  BEGIN
+    digicode_cs (2) <= GUARDED (reset OR (digicode_cs(0) AND code(1) AND NOT(
+code(0)) AND NOT(code(3)) AND NOT(digicode_cs(1)) AND 
+digicode_cs(2) AND code(2)) OR (aux0 AND NOT(code(3)) AND 
+digicode_cs(1) AND aux2));
+  END BLOCK label2;
+
+door <= (digicode_cs(0) AND aux1);
+
+alarm <= (NOT(digicode_cs(0)) AND aux1);
+END;

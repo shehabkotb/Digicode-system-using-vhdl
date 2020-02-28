@@ -1,0 +1,95 @@
+N:a2_x2_2_sig:-1:1318 ps
+N:a2_x2_sig:-1:434 ps
+N:a3_x2_sig:-1:1104 ps
+N:a4_x2_sig:-1:636 ps
+N:alarm:-1:1078 ps
+N:ck:-1:0 ps
+N:code 0:-1:0 ps
+N:code 1:-1:0 ps
+N:code 2:-1:0 ps
+N:code 3:-1:0 ps
+N:day:-1:0 ps
+N:digicode_cs_0:-1:559 ps
+N:digicode_cs_1:-1:557 ps
+N:digicode_cs_2:-1:544 ps
+N:door:-1:1218 ps
+N:inv_x2_sig:-1:116 ps
+N:na2_x1_2_sig:-1:731 ps
+N:na2_x1_3_sig:-1:729 ps
+N:na2_x1_sig:-1:845 ps
+N:na3_x1_2_sig:-1:1111 ps
+N:na3_x1_3_sig:-1:928 ps
+N:na3_x1_4_sig:-1:1244 ps
+N:na3_x1_sig:-1:1643 ps
+N:na4_x1_2_sig:-1:965 ps
+N:na4_x1_sig:-1:952 ps
+N:nao22_x1_2_sig:-1:1594 ps
+N:nao22_x1_sig:-1:1381 ps
+N:no2_x1_sig:-1:325 ps
+N:no3_x1_2_sig:-1:418 ps
+N:no3_x1_3_sig:-1:299 ps
+N:no3_x1_4_sig:-1:398 ps
+N:no3_x1_sig:-1:422 ps
+N:no4_x1_sig:-1:536 ps
+N:not_aux0:-1:116 ps
+N:not_aux1:-1:116 ps
+N:not_aux2:-1:116 ps
+N:not_code_1:-1:160 ps
+N:not_code_2:-1:156 ps
+N:not_code_3:-1:136 ps
+N:not_digicode_cs_0:-1:699 ps
+N:not_digicode_cs_1:-1:673 ps
+N:not_digicode_cs_2:-1:660 ps
+N:not_reset:-1:116 ps
+N:reset:-1:0 ps
+B:alarm_ins:-1:736 ps
+B:door_ins:-1:876 ps
+B:digicode_cs_2:-1:1275 ps
+B:na3_x1_4_ins:-1:1244 ps
+B:na2_x1_3_ins:-1:729 ps
+B:no3_x1_4_ins:-1:398 ps
+B:na4_x1_2_ins:-1:965 ps
+B:no4_x1_ins:-1:536 ps
+B:digicode_cs_1:-1:1626 ps
+B:nao22_x1_2_ins:-1:1594 ps
+B:a2_x2_2_ins:-1:1318 ps
+B:na4_x1_ins:-1:952 ps
+B:no3_x1_3_ins:-1:299 ps
+B:na3_x1_3_ins:-1:928 ps
+B:no3_x1_2_ins:-1:418 ps
+B:digicode_cs_0:32:1674 ps
+B:na3_x1_ins:32:1643 ps
+B:na3_x1_2_ins:-1:1111 ps
+B:no2_x1_ins:-1:325 ps
+B:na2_x1_2_ins:-1:731 ps
+B:na2_x1_ins:-1:845 ps
+B:nao22_x1_ins:32:1381 ps
+B:a4_x2_ins:-1:636 ps
+B:a3_x2_ins:32:1104 ps
+B:no3_x1_ins:-1:422 ps
+B:inv_x2_ins:-1:116 ps
+B:a2_x2_ins:-1:434 ps
+B:not_reset_ins:-1:116 ps
+B:not_code_1:-1:116 ps
+B:not_code_2:-1:116 ps
+B:not_code_3:-1:116 ps
+B:not_digicode_cs_1:-1:673 ps
+B:not_digicode_cs_2:-1:660 ps
+B:not_aux1_ins:-1:906 ps
+B:not_digicode_cs_0:32:675 ps
+B:not_aux0_ins:-1:509 ps
+B:not_aux2_ins:-1:1010 ps
+C:door:-1:1218 ps
+C:alarm:-1:1078 ps
+C:day:-1:0 ps
+C:reset:-1:0 ps
+C:code 0:-1:0 ps
+C:code 1:-1:0 ps
+C:code 2:-1:0 ps
+C:code 3:-1:0 ps
+C:ck:-1:0 ps
+P:digicode_cs_0:digicode_cs_0:not_digicode_cs_0:32:1010 ps
+P:not_digicode_cs_0:not_digicode_cs_0:a3_x2_ins:32:1010 ps
+P:a3_x2_ins:a3_x2_sig:nao22_x1_ins:32:1010 ps
+P:nao22_x1_ins:nao22_x1_sig:na3_x1_ins:32:1010 ps
+P:na3_x1_ins:na3_x1_sig:digicode_cs_0:32:1010 ps

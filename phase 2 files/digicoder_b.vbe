@@ -1,0 +1,66 @@
+-- VHDL data flow description generated from `digicoder_b`
+--		date : Sat Apr 27 19:06:25 2019
+
+
+-- Entity Declaration
+
+ENTITY digicoder_b IS
+  PORT (
+  ck : in BIT;	-- ck
+  vdd : in BIT;	-- vdd
+  vss : in BIT;	-- vss
+  code : in bit_vector(3 DOWNTO 0) ;	-- code
+  reset : in BIT;	-- reset
+  day : in BIT;	-- day
+  alarm : out BIT;	-- alarm
+  door : out BIT	-- door
+  );
+END digicoder_b;
+
+
+-- Architecture Declaration
+
+ARCHITECTURE behaviour_data_flow OF digicoder_b IS
+  SIGNAL digicode_cs : REG_VECTOR(2 DOWNTO 0) REGISTER;	-- digicode_cs
+  SIGNAL aux0 : BIT;		-- aux0
+  SIGNAL aux1 : BIT;		-- aux1
+  SIGNAL aux2 : BIT;		-- aux2
+  SIGNAL aux3 : BIT;		-- aux3
+
+BEGIN
+  aux3 <= NOT(code(1) OR digicode_cs(0));
+  aux2 <= (digicode_cs(1) AND NOT(code(3)));
+  aux1 <= (reset OR digicode_cs(1));
+  aux0 <= NOT(NOT(digicode_cs(1)) AND NOT(digicode_cs(2)));
+  label0 : BLOCK ((ck AND NOT((ck'STABLE))) = '1')
+  BEGIN
+    digicode_cs (0) <= GUARDED ((((NOT(digicode_cs(2)) AND NOT(day)) OR aux1 OR 
+code(3) OR NOT(code(2)) OR NOT(aux3)) AND (reset OR NOT(
+code(3)) OR NOT(code(2)) OR code(1) OR NOT(day)) AND (
+aux1 OR digicode_cs(2)) AND code(0)) OR (((NOT(
+digicode_cs(1)) AND digicode_cs(2) AND NOT(code(2)) AND NOT(
+code(1))) OR (digicode_cs(2) AND code(2)) OR reset OR (
+digicode_cs(1) XOR (NOT(code(3)) AND digicode_cs(2))) OR (
+digicode_cs(1) AND NOT(code(1)) AND digicode_cs(0)) OR (
+digicode_cs(2) AND code(1) AND NOT(digicode_cs(0)))) AND NOT(
+code(0))));
+  END BLOCK label0;
+  label1 : BLOCK ((ck AND NOT((ck'STABLE))) = '1')
+  BEGIN
+    digicode_cs (1) <= GUARDED ((aux0 AND (digicode_cs(1) XOR code(3)) AND NOT(
+code(2)) AND code(1) AND digicode_cs(0) AND NOT(code(0))
+) OR reset);
+  END BLOCK label1;
+  label2 : BLOCK ((ck AND NOT((ck'STABLE))) = '1')
+  BEGIN
+    digicode_cs (2) <= GUARDED ((((aux2 AND NOT(digicode_cs(2)) AND code(2) AND 
+code(1)) OR (NOT(digicode_cs(1)) AND code(3) AND 
+digicode_cs(2) AND NOT(code(2)) AND code(1) AND digicode_cs(0))
+ OR (aux2 AND digicode_cs(2) AND NOT(code(2)) AND 
+aux3)) AND NOT(code(0))) OR reset);
+  END BLOCK label2;
+
+door <= (NOT(aux0) AND NOT(digicode_cs(0)));
+
+alarm <= (NOT(digicode_cs(2)) AND digicode_cs(0));
+END;
