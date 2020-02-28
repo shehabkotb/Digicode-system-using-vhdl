@@ -1,0 +1,85 @@
+-- VHDL data flow description generated from `digicodeo_b`
+--		date : Sat Apr 27 19:06:24 2019
+
+
+-- Entity Declaration
+
+ENTITY digicodeo_b IS
+  PORT (
+  ck : in BIT;	-- ck
+  vdd : in BIT;	-- vdd
+  vss : in BIT;	-- vss
+  code : in bit_vector(3 DOWNTO 0) ;	-- code
+  reset : in BIT;	-- reset
+  day : in BIT;	-- day
+  alarm : out BIT;	-- alarm
+  door : out BIT	-- door
+  );
+END digicodeo_b;
+
+
+-- Architecture Declaration
+
+ARCHITECTURE behaviour_data_flow OF digicodeo_b IS
+  SIGNAL digicode_cs : REG_VECTOR(6 DOWNTO 0) REGISTER;	-- digicode_cs
+  SIGNAL aux0 : BIT;		-- aux0
+  SIGNAL aux1 : BIT;		-- aux1
+  SIGNAL aux2 : BIT;		-- aux2
+  SIGNAL aux4 : BIT;		-- aux4
+  SIGNAL aux5 : BIT;		-- aux5
+  SIGNAL aux7 : BIT;		-- aux7
+  SIGNAL aux8 : BIT;		-- aux8
+  SIGNAL aux9 : BIT;		-- aux9
+  SIGNAL aux10 : BIT;		-- aux10
+
+BEGIN
+  aux10 <= (NOT(code(3)) AND aux9);
+  aux9 <= (NOT(code(0)) AND NOT(reset));
+  aux8 <= (aux0 OR digicode_cs(4) OR digicode_cs(3));
+  aux7 <= NOT((code(2) OR code(1)) OR code(3));
+  aux5 <= NOT(NOT(aux4) OR NOT(code(3)));
+  aux4 <= NOT(code(2) OR NOT(code(1)));
+  aux2 <= NOT(NOT(code(2)) OR code(1));
+  aux1 <= NOT(NOT(day) AND code(3));
+  aux0 <= (digicode_cs(5) OR digicode_cs(6));
+  label0 : BLOCK ((ck AND NOT((ck'STABLE))) = '1')
+  BEGIN
+    digicode_cs (0) <= GUARDED (((aux8 AND code(0)) OR (NOT(aux7) AND 
+digicode_cs(3)) OR (NOT(aux5) AND digicode_cs(4)) OR (aux0 AND 
+code(3)) OR (NOT(aux4) AND digicode_cs(6)) OR (
+digicode_cs(5) AND (NOT(code(2)) OR NOT(code(1)))) OR 
+digicode_cs(2)) AND ((NOT(code(3)) AND (digicode_cs(4) OR 
+digicode_cs(3))) OR NOT(aux2) OR NOT(aux1) OR (aux0 AND NOT(
+code(3))) OR NOT(code(0))) AND NOT(reset));
+  END BLOCK label0;
+  label1 : BLOCK ((ck AND NOT((ck'STABLE))) = '1')
+  BEGIN
+    digicode_cs (1) <= GUARDED (((aux8 AND code(3)) OR digicode_cs(2)) AND aux1 
+AND aux2 AND code(0) AND NOT(reset));
+  END BLOCK label1;
+  label2 : BLOCK ((ck AND NOT((ck'STABLE))) = '1')
+  BEGIN
+    digicode_cs (2) <= GUARDED (aux7 AND digicode_cs(3) AND aux9);
+  END BLOCK label2;
+  label3 : BLOCK ((ck AND NOT((ck'STABLE))) = '1')
+  BEGIN
+    digicode_cs (3) <= GUARDED (aux5 AND digicode_cs(4) AND aux9);
+  END BLOCK label3;
+  label4 : BLOCK ((ck AND NOT((ck'STABLE))) = '1')
+  BEGIN
+    digicode_cs (4) <= GUARDED (digicode_cs(5) AND code(2) AND code(1) AND aux10
+);
+  END BLOCK label4;
+  label5 : BLOCK ((ck AND NOT((ck'STABLE))) = '1')
+  BEGIN
+    digicode_cs (5) <= GUARDED (aux4 AND digicode_cs(6) AND aux10);
+  END BLOCK label5;
+  label6 : BLOCK ((ck AND NOT((ck'STABLE))) = '1')
+  BEGIN
+    digicode_cs (6) <= GUARDED reset;
+  END BLOCK label6;
+
+door <= digicode_cs(1);
+
+alarm <= digicode_cs(0);
+END;

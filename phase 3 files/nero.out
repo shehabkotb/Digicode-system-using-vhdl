@@ -1,0 +1,121 @@
+
+                   @@@    @@@           @@@@@@@              
+                    @@     @              @@   @@            
+                    @@@    @              @@    @@           
+                    @ @@   @    @@@@@     @@    @@     @@@   
+                    @ @@   @   @     @    @@   @@    @@   @@ 
+                    @  @@  @  @@     @@   @@@@@     @@     @@
+                    @   @@ @  @@@@@@@@@   @@  @@    @@     @@
+                    @   @@ @  @@          @@   @@   @@     @@
+                    @    @@@  @@      @   @@   @@   @@     @@
+                    @     @@   @@    @@   @@    @@   @@   @@ 
+                   @@@    @@     @@@@   @@@@@   @@@    @@@   
+
+                               Negotiating Router
+
+                   Alliance CAD System 5.0 20090901,  nero 5.0
+                   Copyright (c) 2002-2019,     ASIM/LIP6/UPMC
+                   E-mail        : alliance-users@asim.lip6.fr
+
+                                S/N 20080611.1
+
+
+  o  MBK environment :
+
+     MBK_IN_LO       := vst
+     MBK_OUT_LO      := vst
+     MBK_IN_PH       := ap
+     MBK_OUT_PH      := ap
+     MBK_WORK_LIB    := .
+     MBK_CATA_LIB    := .
+                        /usr/lib64/alliance/cells/sxlib
+                        /usr/lib64/alliance/cells/dp_sxlib
+                        /usr/lib64/alliance/cells/rflib
+                        /usr/lib64/alliance/cells/rf2lib
+                        /usr/lib64/alliance/cells/ramlib
+                        /usr/lib64/alliance/cells/romlib
+                        /usr/lib64/alliance/cells/pxlib
+                        /usr/lib64/alliance/cells/padlib
+     MBK_CATAL_NAME  := CATAL
+     MBK_VDD         := vdd
+     MBK_VSS         := vss
+     MBK_SEPAR       := .
+
+  o  Loading netlist "digicodea_b_l_scan"...
+  o  Loading layout "digicode_p"...
+  o  Flattening layout...
+  o  Flattening netlist...
+  o  Building netlist dual representation (lofigchain)...
+  o  Binding logical & physical views...
+
+  o  Loading design into grid...
+     o  Using seed cell "alarm_ins" (model "no2_x1").
+     o  Grid offset : (0,0) [adjust (0,0)]
+     o  Small design, global routing disabled.
+     o  Allocating grid size [55,51,3].
+     o  Loading external terminals.
+     o  Finding obstacles.
+     o  Loading nets into grid.
+     o  Allocating the net scheduler.
+     o  Reading power grid.
+
+  o  Local routing stage.
+     - [  47] (hp :=     0) "vdd"
+     - [  46] (hp :=     0) "vss"
+     - [  45] (hp :=     8) "day"
+     - [  44] (hp :=     9) "alarm"
+     - [  43] (hp :=     9) "na4_x1_3_sig"
+     - [  42] (hp :=     9) "scanout"
+     - [  41] (hp :=    10) "na2_x1_3_sig"
+     - [  40] (hp :=    10) "oa22_x2_sig"
+     - [  39] (hp :=    11) "inv_x2_sig"
+     - [  38] (hp :=    11) "o2_x2_sig"
+     - [  37] (hp :=    14) "na2_x1_2_sig"
+     - [  36] (hp :=    15) "no3_x1_sig"
+     - [  35] (hp :=    15) "scanin"
+     - [  34] (hp :=    15) "not_code 2"
+     - [  33] (hp :=    15) "not_digicode_cs 0"
+     - [  32] (hp :=    16) "na4_x1_2_sig"
+     - [  31] (hp :=    17) "na2_x1_4_sig"
+     - [  30] (hp :=    17) "no4_x1_sig"
+     - [  29] (hp :=    17) "na4_x1_sig"
+     - [  28] (hp :=    18) "not_code 1"
+     - [  27] (hp :=    20) "not_aux3"
+     - [  26] (hp :=    23) "no2_x1_sig"
+     - [  25] (hp :=    23) "na3_x1_3_sig"
+     - [  24] (hp :=    25) "no2_x1_2_sig"
+     - [  23] (hp :=    26) "no4_x1_2_sig"
+     - [  22] (hp :=    26) "on12_x1_2_sig"
+     - [  21] (hp :=    28) "nao22_x1_sig"
+     - [  20] (hp :=    31) "not_aux0"
+     - [  19] (hp :=    32) "na2_x1_sig"
+     - [  18] (hp :=    32) "door"
+     - [  17] (hp :=    38) "not_digicode_cs 2"
+     - [  16] (hp :=    39) "ck"
+     - [  15] (hp :=    40) "not_reset"
+     - [  14] (hp :=    46) "na3_x1_sig"
+     - [  13] (hp :=    47) "not_aux1"
+     - [  12] (hp :=    51) "code 2"
+     - [  11] (hp :=    52) "digicode_cs 1"
+     - [  10] (hp :=    52) "not_aux2"
+     - [   9] (hp :=    55) "na3_x1_2_sig"
+     - [   8] (hp :=    55) "not_digicode_cs 1"
+     - [   7] (hp :=    56) "code 1"
+     - [   6] (hp :=    59) "on12_x1_sig"
+     - [   5] (hp :=    61) "reset"
+     - [   4] (hp :=    61) "digicode_cs 2"
+     - [   3] (hp :=    68) "code 0"
+     - [   2] (hp :=    74) "test"
+     - [   1] (hp :=    87) "digicode_cs 0"
+     - [   0] (hp :=    88) "code 3"
+
+  o  Routing stats :
+     - routing iterations    := 27276
+     - re-routing iterations := 0
+     - ratio                 := 0%.
+
+  o  Dumping routing grid.
+  o  Saving MBK figure "digicodea_b_l_scan".
+  o  Saving layout as "digicodea_b_l_scan"...
+
+

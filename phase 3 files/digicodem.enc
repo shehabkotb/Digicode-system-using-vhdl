@@ -1,0 +1,9 @@
+# Encoding figure "digicode"
+-digicode m 3
+s6	0
+s5	1
+s4	2
+s3	5
+s2	3
+s1	4
+s0	6
