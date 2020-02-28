@@ -12,3 +12,4 @@ phase 2 discusses low-level synthesis of a Digital access control system, using 
 phase 3 discusses covers the Physical Synthesis portion of a Digital access control system, using alliance tool such as ocp, nero, s2r
 [Phase 3 Report](phase%203%20report.pdf)
 ### Screen of final output
+![](final%20output.JPG)
